@@ -1,14 +1,14 @@
 figure;
 
-tspan = [0 25];
+tspan = [0 50];
 S0 = 0.7;
 I0 = 0.3;
 
 p0 = [S0; I0];
-h = 1;
+h = 0.5;
 N = (tspan(2)-tspan(1))/h;
 % myEuler methods
-[t1,Eulerp] = Euler(@SIV,tspan,p0,N);
+[t1,Eulerp] = Euler(@SIV2,tspan,p0,N);
 plot(t1, Eulerp(1,:),'b')
 hold on;
 plot(t1, Eulerp(2,:),'r')
