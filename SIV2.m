@@ -5,12 +5,13 @@ sigma = 0.3;       % effectiveness of the vaccination sigma=1 vaccination no eff
 mu = 0.05;             % natural birth/death rate
 gamma = 0.1;        % recovery rate
 theta = 0.002;       % rate of loss of community
-phi = 0.007;          % vaccination rate
+phi = 0.07;          % vaccination rate 0.07
 
 Ic = 0.4;
+% eplison = 1;
 % eplison = sigmoid(t);        % change eplison
-% eplison = sigmoid(t-3);
-eplison = randomwalk(t);
+eplison = sigmoid(t-3);
+% eplison = randomwalk(t);
 f = 0.2;            % intensity of measurements
 
 if x(2) < Ic
