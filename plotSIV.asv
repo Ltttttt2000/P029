@@ -35,32 +35,20 @@ plot(t1, Eulerp(1,:))
 hold on;
 plot(t1, Eulerp(2,:))
 legend('S_origin','I_origin','S','I');
-xlabel('time')
-ylabel('population')
 title('SIV, when reach threshold, implement policy')
 
 subplot(2,2,2);
 plot(Eulerp(1,:),Eulerp(2,:))
 xlabel('S');
 ylabel('I');
-title('phase plane')
 
 subplot(2,2,3);
 plot(t1, betas)
-xlabel('time')
-ylabel('beta')
 title('The changes of beta')
 
 subplot(2,2,4);
-% different initial state 定义多种不同的初始值
+% 定义多种不同的初始值
 p02 = [0.6; 0.4];
-[t2,Eulerp2,withoutpolicy2,betas2] = SIV_Euler(tspan,p02,N);
-p03 = [0.2; 0.2];
-[t3,Eulerp3,withoutpolicy3,betas3] = SIV_Euler(tspan,p03,N);
-plot(Eulerp(1,:),Eulerp(2,:))
-hold on;
-plot(Eulerp2(1,:),Eulerp2(2,:))
-hold on;
-plot(Eulerp3(1,:),Eulerp3(2,:))
-xlabel('S')
-ylabel('I')
+[t2,Euler2,withoutpolicy2,betas2] = SIV_Euler(tspan,p02,N);
+po3 = [0.5; 0.2];
+[t3,Euler3,withoutpolicy3,betas3] = SIV_Euler(tspan,p03,N);
