@@ -1,4 +1,4 @@
-##May:
+## May:
 5.5 meeting:
 add count to delay the effect of policy.
 plot the change of beta. randomwalk is more reasonable for beta changes.
@@ -9,10 +9,10 @@ plot the change of beta. randomwalk is more reasonable for beta changes.
 
 
 
-##March:
+## March:
 Simulating simple SIR model.
 
-##April:
+## April:
 SIV: 
 1. How to define the parameters? not cruel
 2. use if-else? correct SIV2: change the eplison to sigmoid
