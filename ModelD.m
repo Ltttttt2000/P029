@@ -4,7 +4,7 @@ to pass parameter "count"
 
 %}
 
-function [t,r,withoutpolicy,betachange] = SIV_Euler(tspan,yI,N)
+function [t,r,withoutpolicy,betachange] = ModelD(tspan,yI,N)
 
 % S:x(1) I:x(2) 
 beta0 = 0.5;         % infection rate

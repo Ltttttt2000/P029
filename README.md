@@ -5,8 +5,16 @@ plot the change of beta. randomwalk is more reasonable for beta changes.
 使每次封锁的时间都不一样
 怎么判断是否到达threshold: prevoous<threshold but next>threshold
 画出f的变化？？
+目前要解决的问题：放开之后也不会传染率一下子就回去
+Model B, C and D is related to time threshold, after the outbreak, a longer time
+will make new vaccination and treatment, new virus.
 
+basic code:
+plotSIV: 来解ode
+返回withoupolicy的和有policy的进行对比
+用randomwalk来决定beta的变化 odefunction(beta)
 
+Model A
 
 
 ## March:
