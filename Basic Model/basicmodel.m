@@ -49,7 +49,7 @@ for k = 1:N   %time h:day
     without = without(:,1)+odefunction(without(:,1),beta0);
     y(:,1) = y(:,1)+odefunction(y(:,1),beta);
 
-    fprintf('Time: %d S0: %.2f I0: %.2f beta0: %.2f S:%.2f I:%.2f beta:%.2f\n', ...
+    fprintf('Day %d S0: %.2f I0: %.2f initial infected rate: %.2f S:%.2f I:%.2f infected rate:%.2f\n', ...
         k,without(1,1),without(2,1),beta0,y(1,1),y(2,1),beta);
     
     yv = [y(1,1);y(2,1)];

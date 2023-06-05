@@ -1,6 +1,6 @@
 function y = odefunction(x,beta)
 
-sigma = 0.2;        % effectiveness of the vaccination sigma=1 vaccination no effect 0.3
+sigma = 0.3;        % effectiveness of the vaccination sigma=1 vaccination no effect 0.3
 mu = 0.1;          % natural birth/death rate 0.05
 gamma = 0.1;        % recovery rate 0.1
 theta = 0.5;      % rate of loss of community 0.002
