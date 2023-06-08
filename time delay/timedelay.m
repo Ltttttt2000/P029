@@ -1,12 +1,12 @@
 % This combine SIV ode function and Euler together 
 % change the beta 
 
-function [t,r,withoutpolicy,betachange] = Model(tspan,yI,N)
+function [t,r,withoutpolicy,betachange] = timedelay(tspan,yI,N,delay)
 
 % S:x(1) I:x(2) 
 beta0 = 0.5;         % infection rate when there is no policy
 
-Ic = 0.4;           % the threshold of infectious people
+Ic = 0.5;           % the threshold of infectious people
 f = 1;            % intensity of measurements
 
 
@@ -43,13 +43,13 @@ for k = 1:N   %time h:day
     if y(2,1) < Ic
         beta = 0.5;
         count = 0;  % If the infected people lower than threshold, the government will not implement the policy.
-    elseif y(2,1) >=Ic && count <10
+    elseif y(2,1) >=Ic && count <delay
         beta = 0.5;
         count = count + 1;
 
-    elseif y(2,1) >=Ic && count >=10
+    elseif y(2,1) >=Ic && count >=delay
 %          eplison = sigmoid(count-10);
-         eplison = 0.7;
+         eplison = 0.5;
 %         eplison = randomwalk(count -10);  % 更合理
         beta = (1-f*eplison)*beta0; 
         count = count + 1;  % 表示执行计划开始的时间 eplision越大 beta越小
