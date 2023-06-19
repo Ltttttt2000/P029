@@ -20,18 +20,18 @@ N = (tspan(2)-tspan(1))/h;  % one day
 
 beta0 = 0.5;
 eplison = 0.5;
-thresholds = [0.1;0.2; 0.3; 0.4; 0.5; 0.6;0.7]; 
+threshold = 0.5;
 steps = 0.01;
-amplitudes = zeros(length(0.1:steps:0.7),2);
+amplitudes = zeros(length(0.1:steps:1.0),2);
 % for A = 1:length(thresholds)
 i = 1;
-for A = 0.1:steps:0.7
+for A = 0.1:steps:1.0
     fprintf('%.2f\n', A);
 
-    [t1,Eulerp,withoutpolicy,betas] = basicmodel(tspan,p0,N,A,beta0, eplison);
+    [t1,Eulerp,withoutpolicy,betas] = basicmodel(tspan,p0,N,threshold,A, eplison);
 
-    susceptible = Eulerp(1,80:100);
-    infected = Eulerp(2,80:100);
+    susceptible = Eulerp(1,40:100);
+    infected = Eulerp(2,40:100);
     
     max_S = max(susceptible);
     min_S = min(susceptible);
@@ -63,11 +63,8 @@ end
 
 
 figure;
-plot(0.1:steps:0.7,amplitudes(:,1));
+plot(0.1:steps:1.0,amplitudes(:,1));
 hold on;
-plot(0.1:steps:0.7,amplitudes(:,2));
+plot(0.1:steps:1.0,amplitudes(:,2));
 hold off;
-xlabel('threshold Ic')
-ylabel('amplitude')
-title('amplitude-threshold')
-saveas(gcf,"amplitude-threshold-details",'png');
+saveas(gcf,"amplitude-beta0-details",'png');

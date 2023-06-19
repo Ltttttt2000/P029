@@ -20,7 +20,7 @@ N = (tspan(2)-tspan(1))/h;  % one day
 
 beta0 = 0.5;
 eplison = 0.5;
-thresholds = [0.1;0.2; 0.3; 0.4; 0.5; 0.6;0.7];    
+thresholds = [0.1;0.2; 0.3; 0.4; 0.5; 0.6;0.7;0.8;0.9;1.0];    
 amplitudes = zeros(length(thresholds),2);
 for A = 1:length(thresholds)
     fprintf('%d\n', A);
@@ -54,19 +54,36 @@ for A = 1:length(thresholds)
     ylabel('beta')
     title('The changes of beta')
 
-    susceptible = Eulerp(1,10:100);
-    infected = Eulerp(2,10:100);
+    susceptible = Eulerp(1,80:100);
+    infected = Eulerp(2,80:100);
     
     max_S = max(susceptible);
     min_S = min(susceptible);
-    amplitude_S = max_S - min_S;
+    
     
     max_I = max(infected);
     min_I = min(infected);
-    amplitude_I = max_I - min_I;
+    
+
+    [pks,locs] = findpeaks(susceptible);
+    [pks_I,locs_I] = findpeaks(infected);
+
+    if isempty(locs)
+        amplitude_S = 0;
+    else
+        amplitude_S = max_S - min_S;
+    end
+
+    if isempty(locs_I)
+        amplitude_I = 0;
+    else
+        amplitude_I = max_I - min_I;
+    end
     
     amplitudes(A,1) = amplitude_S;
     amplitudes(A,2) = amplitude_I;
+
+
     fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
     
     % different initial state 定义多种不同的初始值
@@ -108,4 +125,7 @@ plot(thresholds,amplitudes(:,1));
 hold on;
 plot(thresholds,amplitudes(:,2));
 hold off;
+xlabel('threshold Ic')
+ylabel('amplitude')
+title('amplitude-threshold')
 saveas(gcf,"amplitude-threshold",'png');

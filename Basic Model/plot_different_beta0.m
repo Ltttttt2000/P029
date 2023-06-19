@@ -19,7 +19,7 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % infection rate when there is no policy
 
 
-beta0s = [0.3; 0.4; 0.5; 0.6; 0.7];
+beta0s = [0.1; 0.2; 0.3; 0.4; 0.5; 0.6; 0.7;0.8;0.9;1.0];
 eplison = 0.5;
 threshold = 0.5;    
 amplitudes = zeros(length(beta0s),2);
@@ -42,8 +42,8 @@ for A = 1:length(beta0s)
     
     title('The population of susceptible and intected people')
     
-    susceptible = Eulerp(1,10:100);
-    infected = Eulerp(2,10:100);
+    susceptible = Eulerp(1,80:100);
+    infected = Eulerp(2,80:100);
     
     max_S = max(susceptible);
     min_S = min(susceptible);
@@ -57,24 +57,7 @@ for A = 1:length(beta0s)
     amplitudes(A,2) = amplitude_I;
     fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
 
-    tol = 1e-12;
-    for i = 1:length(withoutpolicy)-1
-        fprintf("%d %d\n", withoutpolicy(1,i),withoutpolicy(2,i));
-        diff_S = withoutpolicy(1,i+1) - withoutpolicy(1,i);
-        diff_I = withoutpolicy(2,i+1) - withoutpolicy(2,i);
-    
-        if abs(diff_S) < tol && abs(diff_I) < tol
-            fprintf("Difference: %d, %d\n", diff_S, diff_I);
-            fprintf("The steady state of (S, I): %.2f, %.2f\n", withoutpolicy(1,i),withoutpolicy(2,i));
-            differences(A,1) = withoutpolicy(1,i);
-            differences(A,2) = withoutpolicy(2,i);
-            break;
-        end
-    end 
-
-%     differences(A,1) = diff_S;
-%     differences(A,2) = diff_I;
-
+  
     % the phase plane S-I
     subplot(2,2,2);
     plot(Eulerp(1,:),Eulerp(2,:))
@@ -134,15 +117,3 @@ xlabel('initial beta');
 ylabel('amplitude of oscillation')
 legend('S', 'I');
 saveas(gcf,"amplitude-beta0",'png');
-
-figure;
-plot(beta0s, differences(:,1));
-hold on;
-plot(beta0s, differences(:,2));
-hold off;
-title("steady state of oscillation with difference beta")
-xlabel('initial beta');
-ylabel('steady state')
-legend('S', 'I');
-
-saveas(gcf,"steady-beta0",'png');

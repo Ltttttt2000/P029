@@ -19,7 +19,7 @@ N = (tspan(2)-tspan(1))/h;  % one day
 
 
 beta0s = 0.5;
-eplisons = [0.3; 0.4; 0.5; 0.6; 0.7];
+eplisons = [0.1;0.2;0.3; 0.4; 0.5; 0.6; 0.7;0.8;0.9;1.0];
 threshold = 0.5;    
 amplitudes = zeros(length(eplisons),2);
 for A = 1:length(eplisons)
@@ -109,4 +109,7 @@ plot(eplisons,amplitudes(:,1));
 hold on;
 plot(eplisons,amplitudes(:,2));
 hold off;
+xlabel('eplison')
+ylabel('amplitude')
+title('amplitude-eplison')
 saveas(gcf,"amplitude-eplison",'png');

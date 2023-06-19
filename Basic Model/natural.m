@@ -1,6 +1,6 @@
 figure;
 
-tspan = [0 100];   % days
+tspan = [0 300];   % days
 S0 = 0.7;           % initial susceptible population 
 I0 = 0.3;           % initial intected proportion
 
@@ -13,9 +13,10 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % withoutpolicy: vector[s,i] without policy
 % betas: the beta changes when threshold policy
 [t1,Eulerp,withoutpolicy] = naturalmodel(tspan,p0,N);
-tol = 1e-12;
+% tol = 1e-12;
+tol = 1e-5;
 for i = 1:length(withoutpolicy)-1
-    fprintf("%d %d\n", withoutpolicy(1,i),withoutpolicy(2,i));
+%     fprintf("%d %d\n", withoutpolicy(1,i),withoutpolicy(2,i));
     diff_S = withoutpolicy(1,i+1) - withoutpolicy(1,i);
     diff_I = withoutpolicy(2,i+1) - withoutpolicy(2,i);
 
