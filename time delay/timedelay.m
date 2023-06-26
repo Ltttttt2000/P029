@@ -41,25 +41,27 @@ for k = 1:N   %time h:day
 %        eplison = sigmoid(0.05*k);  % have oscillation
 
     if y(2,1) < Ic
+        policytime = 0;
         beta = 0.5;
         count = 0;  % If the infected people lower than threshold, the government will not implement the policy.
     elseif y(2,1) >=Ic && count <delay
         beta = 0.5;
         count = count + 1;
-
+        policytime = 0;
     elseif y(2,1) >=Ic && count >=delay
 %          eplison = sigmoid(count-10);
          eplison = 0.5;
 %         eplison = randomwalk(count -10);  % 更合理
         beta = (1-f*eplison)*beta0; 
         count = count + 1;  % 表示执行计划开始的时间 eplision越大 beta越小
+        policytime = policytime + 1;
     end
 
     without = without(:,1)+odefunction(without(:,1),beta0);
     y(:,1) = y(:,1)+odefunction(y(:,1),beta);
 
-    fprintf('Time: %d S0: %.2f I0: %.2f beta0: %.2f S:%.2f I:%.2f beta:%.2f count:%d\n', ...
-        k,without(1,1),without(2,1),beta0,y(1,1),y(2,1),beta,count);
+    fprintf('Time: %d S0: %.2f I0: %.2f beta0: %.2f S:%.2f I:%.2f beta:%.2f count:%d policytime:%d\n', ...
+        k,without(1,1),without(2,1),beta0,y(1,1),y(2,1),beta,count,policytime);
     
     yv = [y(1,1);y(2,1)];
 

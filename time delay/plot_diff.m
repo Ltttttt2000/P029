@@ -14,12 +14,14 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % betas: the beta changes when threshold policy
 
 
-delay = [1;2;3;4;5;6;7;8;9;10;11;12;13;14;15];
+delay = [0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15];
 amplitudes = zeros(length(delay),2);
 for A = 1:length(delay)
     [t1,Eulerp,withoutpolicy,betas] = timedelay(tspan,p0,N,delay(A,1));
 
     figure;
+    name = "time delay (days) = " + num2str(delay(A,1));
+    sgtitle(name);
     subplot(2,2,1);
     plot(t1, withoutpolicy(1,:),'r')
     hold on;
@@ -34,8 +36,8 @@ for A = 1:length(delay)
     title('SIV, when reach threshold, implement policy')
 
 
-    susceptible = Eulerp(1,10:100);
-    infected = Eulerp(2,10:100);
+    susceptible = Eulerp(1,40:100);
+    infected = Eulerp(2,40:100);
     
     max_S = max(susceptible);
     min_S = min(susceptible);
@@ -77,7 +79,7 @@ for A = 1:length(delay)
     xlabel('S')
     ylabel('I')
 
-    txt = "timedelay " + num2str(A);
+    txt = "timedelay " + num2str(A-1);
     saveas(gcf,txt,'png');
 end
 

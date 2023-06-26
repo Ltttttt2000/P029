@@ -12,12 +12,12 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % Eulerp: the vector[s,i] with threshold policy
 % withoutpolicy: vector[s,i] without policy
 % betas: the beta changes when threshold policy
-Ic = 0.5;
+Ic = 0.6;
 beta0 = 0.5;
 eplison = 0.5;
 
 
-[t1,Eulerp,withoutpolicy,betas] = basicmodel(tspan,p0,N,Ic, beta0,eplison);
+[t1,Eulerp,withoutpolicy,betas,daysofpolicy, dayswithoutpolicy] = basicmodel(tspan,p0,N,Ic, beta0,eplison);
 
 figure;
 plot(t1, withoutpolicy(1,:),'r')
@@ -55,7 +55,9 @@ if isempty(locs_I)
 end
 
 
-
+fprintf("%d,%d\n", daysofpolicy, dayswithoutpolicy);
+percentage = daysofpolicy /(daysofpolicy + dayswithoutpolicy);
+fprintf("%.2f\n",percentage);
 fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
 
 % [Pxx,f] = periodogram(susceptible)
