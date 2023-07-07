@@ -46,19 +46,34 @@ for A = 1:length(beta0s)
     
     title('The population of susceptible and intected people')
     
-    susceptible = Eulerp(1,80:100);
-    infected = Eulerp(2,80:100);
+    susceptible = Eulerp(1,50:100);
+    infected = Eulerp(2,50:100);
     
     max_S = max(susceptible);
     min_S = min(susceptible);
-    amplitude_S = max_S - min_S;
-    
+
     max_I = max(infected);
     min_I = min(infected);
-    amplitude_I = max_I - min_I;
+
+    [pks,locs] = findpeaks(susceptible);
+    [pks_I,locs_I] = findpeaks(infected);
+
+    if isempty(locs)
+        amplitude_S = 0;
+    else
+        amplitude_S = max_S - min_S;
+    end
+
+    if isempty(locs_I)
+        amplitude_I = 0;
+    else
+        amplitude_I = max_I - min_I;
+    end
     
     amplitudes(A,1) = amplitude_S;
     amplitudes(A,2) = amplitude_I;
+
+
     percentage = daysofpolicy /(daysofpolicy + dayswithoutpolicy);
     percentages(A,1) = percentage;
 %     fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);

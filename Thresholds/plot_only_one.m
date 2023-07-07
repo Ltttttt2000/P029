@@ -10,7 +10,7 @@ p0 = [S0; I0];      % vector of ode
 % Eulerp: the vector[s,i] with threshold policy
 % withoutpolicy: vector[s,i] without policy
 % betas: the beta changes when threshold policy
-Ic = 0.5;
+Ic = 0.23;
 beta0 = 0.5;
 eplison = 0.5;
 
@@ -39,35 +39,33 @@ xlabel('time')
 ylabel('population')
     
 title('The population of susceptible and intected people')
-% susceptible = Eulerp(1,20:100);
-% infected = Eulerp(2,20:100);
-% 
-% max_S = max(susceptible);
-% min_S = min(susceptible);
-% amplitude_S = max_S - min_S;
-% 
-% max_I = max(infected);
-% min_I = min(infected);
-% amplitude_I = max_I - min_I;
-% 
-% [pks,locs] = findpeaks(susceptible);
-% [pks_I,locs_I] = findpeaks(infected);
-% 
-% if isempty(locs)
-%     amplitude_S = 0;
-% end
-% 
-% if isempty(locs_I)
-%     amplitude_I = 0;
-% end
-% 
-% 
-% fprintf("%d,%d\n", daysofpolicy, dayswithoutpolicy);
-% percentage = daysofpolicy /(daysofpolicy + dayswithoutpolicy);
-% fprintf("%.2f\n",percentage);
-% fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
+susceptible = Eulerp(1,40:100);
+infected = Eulerp(2,40:100);
 
-% [Pxx,f] = periodogram(susceptible)
+max_S = max(susceptible);
+min_S = min(susceptible);
+amplitude_S = max_S - min_S;
+
+max_I = max(infected);
+min_I = min(infected);
+amplitude_I = max_I - min_I;
+
+[pks,locs] = findpeaks(susceptible);
+[pks_I,locs_I] = findpeaks(infected);
+
+if isempty(locs)
+    amplitude_S = 0;
+end
+
+if isempty(locs_I)
+    amplitude_I = 0;
+end
+
+
+fprintf("%d,%d\n", daysofpolicy, dayswithoutpolicy);
+percentage = daysofpolicy /(daysofpolicy + dayswithoutpolicy);
+
+[Pxx,f] = periodogram(susceptible);
 
 subplot(2,2,2);
 scatter(Eulerp(1,:),Eulerp(2,:))
@@ -108,3 +106,7 @@ legend('[0.7,0.3]', '[0.6; 0.4]', '[0.8; 0.2]','[0.2, 0.5]','[0.4, 0.6]')
 xlabel('S')
 ylabel('I')
 title('Different initial [S0, I0]')
+
+fprintf("%.2f\n",percentage);
+fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
+fprintf("The amplitude of S:%f, I: %f\n", amplitude_S, amplitude_I);

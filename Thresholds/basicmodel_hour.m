@@ -36,7 +36,7 @@ dayswithoutpolicy = 0;
 startpolicy = false;
 fprintf('The initial population: S:%.2f, I:%.2f\n', y(1,1),y(2,1));
 
-for k = 1:N   %time h:day
+for k = 1:N   %time h:hour
     if y(2,1) < Ic
         beta = beta0;
         if startpolicy == true

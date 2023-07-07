@@ -22,9 +22,10 @@ beta0s = 0.5;
 eplisons = [0.1;0.2;0.3; 0.4; 0.5; 0.6; 0.7;0.8;0.9;1.0];
 threshold = 0.5;    
 amplitudes = zeros(length(eplisons),2);
+percentages = zeros(length(thresholds),1);
 for A = 1:length(eplisons)
     fprintf('%d\n', A);
-    [t1,Eulerp,withoutpolicy,betas] = basicmodel(tspan,p0,N,threshold,beta0, eplisons(A,1));
+    [t1,Eulerp,withoutpolicy,betas,daysofpolicy,dayswithoutpolicy] = basicmodel_countdays(tspan,p0,N,threshold,beta0, eplisons(A,1));
     figure;
     name = "eplison = " + num2str(eplisons(A,1));
     sgtitle(name);
@@ -56,10 +57,13 @@ for A = 1:length(eplisons)
     
     amplitudes(A,1) = amplitude_S;
     amplitudes(A,2) = amplitude_I;
+
+    percentage = daysofpolicy /(daysofpolicy + dayswithoutpolicy);
+    percentages(A,1) = percentage;
     fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
     % the phase plane S-I
     subplot(2,2,2);
-    plot(Eulerp(1,:),Eulerp(2,:))
+    scatter(Eulerp(1,:),Eulerp(2,:))
     xlabel('S');
     ylabel('I');
     title('phase plane')
@@ -115,3 +119,11 @@ xlabel('eplison')
 ylabel('amplitude')
 title('amplitude-eplison')
 saveas(gcf,"amplitude-eplison",'png');
+
+figure;
+plot(eplisons,percentages(:,1));
+yline(0.5, 'r--', 'LineWidth', 2);
+xlabel('eplison')
+ylabel('percentage of policy days')
+title('Days of policy-eplison')
+saveas(gcf,'percentage-eplison','png')

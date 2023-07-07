@@ -15,7 +15,7 @@ beta0 = 0.5;
 eplison = 0.5;
 
 % Week
-tspan = [0 280];
+tspan = [0 490];
 h = 7;
 N = (tspan(2)-tspan(1))/h;  % one week
 [t1,Eulerp,withoutpolicy,betas,daysofpolicy, dayswithoutpolicy] = basicmodel_week(tspan,p0,N,Ic, beta0,eplison);
@@ -78,16 +78,16 @@ ylabel('beta')
 title('The changes of beta')
 
 p02 = [0.6; 0.4];
-[t2,Eulerp2,withoutpolicy2,betas2,daysofpolicy2,dayswithoutpolicy2] = basicmodel_countdays(tspan,p02,N,Ic, beta0,eplison);
+[t2,Eulerp2,withoutpolicy2,betas2,daysofpolicy2,dayswithoutpolicy2] = basicmodel_week(tspan,p02,N,Ic, beta0,eplison);
 
 p03 = [0.8; 0.2];
-[t3,Eulerp3,withoutpolicy3,betas3,daysofpolicy3,dayswithoutpolicy3] = basicmodel_countdays(tspan,p03,N,Ic, beta0,eplison);
+[t3,Eulerp3,withoutpolicy3,betas3,daysofpolicy3,dayswithoutpolicy3] = basicmodel_week(tspan,p03,N,Ic, beta0,eplison);
 
 p04 = [0.2, 0.5];
-[t4,Eulerp4,withoutpolicy4,betas4,daysofpolicy4,dayswithoutpolicy4] = basicmodel_countdays(tspan,p04,N,Ic, beta0,eplison);
+[t4,Eulerp4,withoutpolicy4,betas4,daysofpolicy4,dayswithoutpolicy4] = basicmodel_week(tspan,p04,N,Ic, beta0,eplison);
 
 p05 = [0.4, 0.6];
-[t5,Eulerp5,withoutpolicy5,betas5,daysofpolicy5,dayswithoutpolicy5] = basicmodel_countdays(tspan,p05,N,Ic, beta0,eplison);
+[t5,Eulerp5,withoutpolicy5,betas5,daysofpolicy5,dayswithoutpolicy5] = basicmodel_week(tspan,p05,N,Ic, beta0,eplison);
 
 
 subplot(2,2,4);
@@ -103,3 +103,4 @@ legend('[0.7,0.3]', '[0.6; 0.4]', '[0.8; 0.2]','[0.2, 0.5]','[0.4, 0.6]')
 xlabel('S')
 ylabel('I')
 title('Different initial [S0, I0]')
+saveas(gcf,'week','png')

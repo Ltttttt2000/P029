@@ -55,8 +55,8 @@ for A = 0.1:steps:0.7
         amplitude_I = max_I - min_I;
     end
     
-    amplitudes(i,1) = amplitude_S;
-    amplitudes(i,2) = amplitude_I;
+    amplitudes(i,1) = round(amplitude_S,3);
+    amplitudes(i,2) = round(amplitude_I,3);
 
     fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
 
