@@ -6,7 +6,7 @@ function [t,r,withoutpolicy,betachange] = twothreshold(tspan,yI,N, Ics,beta0,epl
 % S:x(1) I:x(2) 
 
 Ic1 = Ics(1,1);
-Ic2 = Ics(2,1);
+Ic2 = Ics(1,2);
 eplison1 = eplisons(1,1);
 eplison2 = eplisons(2,1);
 % change threshold
@@ -35,8 +35,8 @@ t = 0;
 betachange = beta0;
 
 
-fprintf('The initial population: S:%.2f, I:%.2f\n', y(1,1),y(2,1));
-
+% fprintf('The initial population: S:%.2f, I:%.2f\n', y(1,1),y(2,1));
+flag = false;
 for k = 1:N   %time h:day
     % eplison should be 0-1
 %       eplison = 0.5;  % 数字越大，持续封锁措施时间越长
@@ -47,16 +47,19 @@ for k = 1:N   %time h:day
         beta = 0.5;
     elseif y(2,1) >=Ic1 && y(2,1) < Ic2
         beta = (1-f*eplison1)*beta0; 
+        flag = true;
     elseif y(2,1)>=Ic2
         beta = (1-f*eplison1)*(1-f*eplison2)*beta0;
+%     elseif y(2,1)>=Ic2 && flag == false
+%         beta = 0.5;
     end
 
     without = without(:,1)+odefunction(without(:,1),beta0);
     y(:,1) = y(:,1)+odefunction(y(:,1),beta);
 
-    fprintf('Day %d S0: %.2f I0: %.2f initial infected rate: %.2f S:%.2f I:%.2f infected rate:%.2f\n', ...
-        k,without(1,1),without(2,1),beta0,y(1,1),y(2,1),beta);
-    
+%     fprintf('Day %d S0: %.2f I0: %.2f initial infected rate: %.2f S:%.2f I:%.2f infected rate:%.2f\n', ...
+%         k,without(1,1),without(2,1),beta0,y(1,1),y(2,1),beta);
+%     
     yv = [y(1,1);y(2,1)];
 
     withoutpolicy = [withoutpolicy without];
@@ -67,5 +70,5 @@ for k = 1:N   %time h:day
 
 end
 
-fprintf('==================================================\n');
+% fprintf('==================================================\n');
 end

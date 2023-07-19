@@ -19,7 +19,8 @@ N = (tspan(2)-tspan(1))/h;  % one day
 
 
 beta0 = 0.5;
-eplison = 0.5;
+eplison = 0.5;  
+% eplison = 0.6; % Simulate the two policy implemented together. eplison2 = 0.2, eplisonq = 0.5
 thresholds = [0.1;0.2; 0.3; 0.4; 0.5; 0.6;0.7]; 
 steps = 0.01;
 amplitudes = zeros(length(0.1:steps:0.7),2);

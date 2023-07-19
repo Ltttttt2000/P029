@@ -12,13 +12,13 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % Eulerp: the vector[s,i] with threshold policy
 % withoutpolicy: vector[s,i] without policy
 % betas: the beta changes when threshold policy
-Ic1 = 0.4;
-Ic2 = 0.5;
-Ics = [Ic1; Ic2];
+Ic1 = 0.2;
+Ic2 = 0.4;
+Ics = [Ic1 Ic2];
 
-
+% How to choose the two eplisons
 eplison1 = 0.5;
-eplison2 = 0.4;
+eplison2 = 0.2;
 eplisons = [eplison1; eplison2];
 
 beta0 = 0.5;
@@ -26,7 +26,7 @@ beta0 = 0.5;
 [t1,Eulerp,withoutpolicy,betas] = twothreshold(tspan,p0,N, Ics,beta0,eplisons);
 
 figure;
-name = "Ic1=" + num2str(Ic1)+",Ic2="+ num2str(Ic2)+",eplison1="+num2str(eplison1)+",eplison2="+num2str(eplison2);
+name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ics(1,2));
 sgtitle(name);
 subplot(2,2,1)
 plot(t1, withoutpolicy(1,:),'r')
@@ -36,43 +36,22 @@ hold on;
 plot(t1, Eulerp(1,:))
 hold on;
 plot(t1, Eulerp(2,:))
+yline(Ic1,'r');
+yline(Ic2,'b');
 legend('S origin','I origin','S','I');
 xlabel('time')
 ylabel('population')
-    
+
 title('The population of susceptible and intected people')
-susceptible = Eulerp(1,80:100);
-infected = Eulerp(2,80:100);
-
-max_S = max(susceptible);
-min_S = min(susceptible);
-amplitude_S = max_S - min_S;
-
-max_I = max(infected);
-min_I = min(infected);
-amplitude_I = max_I - min_I;
-
-[pks,locs] = findpeaks(susceptible);
-[pks_I,locs_I] = findpeaks(infected);
-
-if isempty(locs)
-    amplitude_S = 0;
-end
-
-if isempty(locs_I)
-    amplitude_I = 0;
-end
-
-% the phase plane S-I
 subplot(2,2,2);
-plot(Eulerp(1,:),Eulerp(2,:))
+scatter(Eulerp(1,:),Eulerp(2,:))
 xlabel('S');
 ylabel('I');
 title('phase plane')
 
 % the beta changes verus time
 subplot(2,2,3);
-plot(t1, betas)
+plot(t1, betas,'*')
 xlabel('time')
 ylabel('beta')
 title('The changes of beta')
@@ -105,7 +84,8 @@ xlabel('S')
 ylabel('I')
 title('Different initial [S0, I0]')
 
-
+% saveas(gcf, '2 thresholds','png')
 
 % [Pxx,f] = periodogram(susceptible)
+
 

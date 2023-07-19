@@ -14,8 +14,8 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % betas: the beta changes when threshold policy
 
 
-% delay = [0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15];
-delay = [7;8];
+delay = [0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15];
+% delay = [7;8];
 amplitudes = zeros(length(delay),2);
 for A = 1:length(delay)
     [t1,Eulerp,withoutpolicy,betas] = timedelay(tspan,p0,N,delay(A,1));
