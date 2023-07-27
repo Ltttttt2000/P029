@@ -17,20 +17,22 @@ beta_x = [];
 % Ic1=0.56 steady state Ic1 = 0.2<initial I; Ic1 = 0.3=Initial I; Ic1 =
 % 0.35; Ic1 = 0.4.
 
-percentage1 = zeros(length(0.1:0.01:0.25),1);
-percentage2 = zeros(length(0.1:0.01:0.25),1);
-percentage3 = zeros(length(0.1:0.01:0.25),1);
-percentage4 = zeros(length(0.1:0.01:0.25),1);
-xx = zeros(length(0.1:0.01:0.25),1);
+percentage1 = zeros(length(0:1:10),1);
+percentage2 = zeros(length(0:1:10),1);
+percentage3 = zeros(length(0:1:10),1);
+percentage4 = zeros(length(0:1:10),1);
+xx = zeros(length(0:1:10),1);
 beta0 = 0.5;
 eplison1 = 0.5;
 eplison2 = 0.2;
 eplisons = [eplison1; eplison2];
+
 i = 1;
 
 Ic1 = 0.37;
-delay = 2;
-for Ic2 = 0.1:0.01:0.25
+Ic2 = 0.18;
+
+for delay = 0:1:10
     [t1,Eulerp,withoutpolicy,betas,days] = twothreshold3(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,delay);
     [peaks_I, peakIdx_I] = findpeaks(Eulerp(2,:));
 
@@ -44,13 +46,13 @@ for Ic2 = 0.1:0.01:0.25
 
 
     total = length_min+length_max;
-    x_I = zeros(1,total)+Ic2;
+    x_I = zeros(1,total)+delay;
     y_I = [peaks_I,troughs_I];
 
     Ivalues_I = [Ivalues_I,y_I];
     Ic2s = [Ic2s, x_I];
 
-    x_beta = zeros(1,length(betas))+Ic2;
+    x_beta = zeros(1,length(betas))+delay;
     beta_x = [beta_x,x_beta];
     beta_value = [beta_value, betas];
   
@@ -86,14 +88,17 @@ for Ic2 = 0.1:0.01:0.25
     percentage2(i,1) = days2 /daystotal;
     percentage3(i,1) = days3 /daystotal;
     percentage4(i,1) = days4 /daystotal;
-    xx(i,1) = Ic2;
-    fprintf('%f\n',percentage2(i,1))
+
+    xx(i,1) = delay;
+%     fprintf('%f\n',percentage2(i,1))
     i = i +1;
     
 
 end
 
 figure;
+name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ic2);
+sgtitle(name);
 subplot(2,1,1)
 plot(Ic2s, Ivalues_I,'*');
 xlabel('Ic2 = S - I')
@@ -109,7 +114,7 @@ yline(Ic1,'r','Linewidth',2);
 
 subplot(2,1,2)
 plot(beta_x, beta_value,'*');
-xlabel('The second threshold (Ic2 = S - I)')
+xlabel('Time delay (days)')
 ylabel('Beta changes')
 title('Bifurcation diagram betas')
 
@@ -120,7 +125,7 @@ plot(xx(:,1),percentage2(:,1),'LineWidth',2);
 plot(xx(:,1),percentage3(:,1),'LineWidth',2);
 % plot(xx(:,1),percentage4(:,1),'LineWidth',2);
 legend('days of State 1', 'days of State 2', 'days of State 3')
-xlabel('threshold Ic2')
+xlabel('Time delay (days)')
 ylabel('percentage of days')
-title('Days of different States')
+title(name)
 % saveas(gcf,'percentage-newic','png')

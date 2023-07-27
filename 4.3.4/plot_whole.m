@@ -23,7 +23,7 @@ eplisons = [eplison1; eplison2];
 
 beta0 = 0.5;
 delay = 0;
-[t1,Eulerp,withoutpolicy,betas] = twothreshold2(tspan,p0,N, Ics,beta0,eplisons,0);
+[t1,Eulerp,withoutpolicy,betas] = twothreshold3(tspan,p0,N, Ics,beta0,eplisons,0);
 
 figure;
 name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ics(1,2));
@@ -56,18 +56,18 @@ xlabel('time')
 ylabel('beta')
 title('The changes of beta')
 
-fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
+% fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
 p02 = [0.6; 0.4];
-[t2,Eulerp2,withoutpolicy2,betas2] = twothreshold2(tspan,p02,N,Ics,beta0, eplisons,0);
+[t2,Eulerp2,withoutpolicy2,betas2] = twothreshold3(tspan,p02,N,Ics,beta0, eplisons,0);
 
 p03 = [0.8; 0.2];
-[t3,Eulerp3,withoutpolicy3,betas3] = twothreshold2(tspan,p03,N,Ics,beta0, eplisons,0);
+[t3,Eulerp3,withoutpolicy3,betas3] = twothreshold3(tspan,p03,N,Ics,beta0, eplisons,0);
 
 p04 = [0.2, 0.5];
-[t4,Eulerp4,withoutpolicy4,betas4] = twothreshold2(tspan,p04,N,Ics,beta0, eplisons,0);
+[t4,Eulerp4,withoutpolicy4,betas4] = twothreshold3(tspan,p04,N,Ics,beta0, eplisons,0);
 
 p05 = [0.4, 0.6];
-[t5,Eulerp5,withoutpolicy5,betas5] = twothreshold2(tspan,p05,N,Ics,beta0, eplisons,0);
+[t5,Eulerp5,withoutpolicy5,betas5] = twothreshold3(tspan,p05,N,Ics,beta0, eplisons,0);
 
 
 subplot(2,2,4);

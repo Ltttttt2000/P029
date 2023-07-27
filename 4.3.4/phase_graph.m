@@ -13,7 +13,9 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % withoutpolicy: vector[s,i] without policy
 % betas: the beta changes when threshold policy
 Ic1 = 0.37;
-Ic2 = 0.17; % IC2=0.15-0.2的Phase graph
+
+% 改变Ic2 = 0.14/0.16/0.18/0.23
+Ic2 = 0.14; % IC2=0.15-0.2的Phase graph
 Ics = [Ic1 Ic2];
 
 % How to choose the two eplisons
@@ -22,12 +24,12 @@ eplison2 = 0.2;
 eplisons = [eplison1; eplison2];
 
 beta0 = 0.5;
-delay = 0;
+delay = 6;
 
 [t1,Eulerp,withoutpolicy,betas] = twothreshold3(tspan,p0,N, Ics,beta0,eplisons,delay);
 
 figure;
-name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ics(1,2));
+name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ic2);
 sgtitle(name);
 subplot(2,2,1)
 plot(t1, withoutpolicy(1,:),'r')
@@ -48,7 +50,12 @@ subplot(2,2,2);
 % scatter(Eulerp(1,:),Eulerp(2,:))
 scatter(Eulerp(1,:)-Eulerp(2,:),Eulerp(2,:))
 yline(Ic1,'r');
-xline(Ic2, 'g')
+% xline(Ic2, 'g');
+ylim=get(gca,'Ylim'); % 获取当前图形的纵轴的范围
+line([Ic2,Ic2],[Ic1,max(ylim)],'color','g','linestyle','--','LineWidth',2);
+
+% hold on
+% plot([Ic2,Ic2],ylim,'m--'); % 绘制直线
 xlabel('S-I');
 ylabel('I');
 title('phase plane')

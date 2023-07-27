@@ -20,9 +20,8 @@ beta_value = [];
 beta_x = [];
 
 Ic2 = 0.4;
-delay = 3;
 for Ic1 = 0.1:0.01:0.56
-    [t1,Eulerp,withoutpolicy,betas] = twothreshold2(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,delay);
+    [t1,Eulerp,withoutpolicy,betas] = twothreshold2(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,0);
     [peaks_I, peakIdx_I] = findpeaks(Eulerp(2,:));
     % 找到局部极小值
     [troughs_I, troughIdx_I] = findpeaks(-Eulerp(2,:));

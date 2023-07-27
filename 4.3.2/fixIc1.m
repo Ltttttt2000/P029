@@ -22,9 +22,10 @@ beta_x = [];
 % 固定Ic1,看Ic2的变化对oscillation的影响 Ic2>Ic1
 % Ic1=0.56 steady state Ic1 = 0.2<initial I; Ic1 = 0.3=Initial I; Ic1 =
 % 0.35; Ic1 = 0.4.
-Ic1 = 0.4;
+Ic1 = 0.34;
+delay = 2;
 for Ic2 = Ic1+0.01:0.01:0.56
-    [t1,Eulerp,withoutpolicy,betas] = twothreshold1(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,0);
+    [t1,Eulerp,withoutpolicy,betas] = twothreshold1(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,delay);
     [peaks_I, peakIdx_I] = findpeaks(Eulerp(2,:));
 
     % 找到局部极小值

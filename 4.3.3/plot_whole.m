@@ -12,8 +12,8 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % Eulerp: the vector[s,i] with threshold policy
 % withoutpolicy: vector[s,i] without policy
 % betas: the beta changes when threshold policy
-Ic1 = 0.34;
-Ic2 = 0.35;
+Ic1 = 0.35;
+Ic2 = 0.2;
 Ics = [Ic1 Ic2];
 
 % How to choose the two eplisons
@@ -45,6 +45,8 @@ ylabel('population')
 title('The population of susceptible and intected people')
 subplot(2,2,2);
 scatter(Eulerp(1,:),Eulerp(2,:))
+yline(Ic1,'r','LineWidth',1,'label','Ic1')
+yline(Ic2,'g','LineWidth',1,'label', 'Ic2')
 xlabel('S');
 ylabel('I');
 title('phase plane')
@@ -56,7 +58,7 @@ xlabel('time')
 ylabel('beta')
 title('The changes of beta')
 
-fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
+% fprintf("The amplitude of S: %.2f, I: %.2f\n", amplitude_S, amplitude_I);
 p02 = [0.6; 0.4];
 [t2,Eulerp2,withoutpolicy2,betas2] = twothreshold2(tspan,p02,N,Ics,beta0, eplisons,0);
 

@@ -18,8 +18,8 @@ Ivalues_S = [];
 Times_S = [];
 beta_value = [];
 beta_x = [];
-Ic1 = 0.31;
-Ic2 = 0.4;
+Ic1 = 0.35;
+Ic2 = 0.2;
 Ics = [Ic1,Ic2];
 
 for A = 1:length(delay)
@@ -61,19 +61,23 @@ for A = 1:length(delay)
 end
 
 figure;
-subplot(2,1,1)
+name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ics(1,2));
+% sgtitle(name);
+
+% subplot(2,1,1)
 plot(Times_I, Ivalues_I,'*');
 yline(Ic1,'r','LineWidth',2)
 yline(Ic2,'g','LineWidth',2)
 xlabel('time delay (days)')
 ylabel('Infected group proportion (I) values')
-title('Bifurcation diagram for time delay')
-
-subplot(2,1,2)
-plot(beta_x, beta_value,'*');
-xlabel('time delay (days)')
-ylabel('Beta changes')
-title('Bifurcation diagram betas vs Ic1')
+title(name)
+% title('Bifurcation diagram for time delay')
+% 
+% subplot(2,1,2)
+% plot(beta_x, beta_value,'*');
+% xlabel('time delay (days)')
+% ylabel('Beta changes')
+% title('Bifurcation diagram betas vs Ic1')
 % figure;
 % plot(Times_S, Ivalues_S,'*');
 % xlabel('time delay (days)')
