@@ -33,7 +33,7 @@ betachange = beta0;
 count =0;  
 
 fprintf('The initial population: S:%.2f, I:%.2f\n', y(1,1),y(2,1));
-
+policytime = 0;
 for k = 1:N   %time h:day
     % eplison should be 0-1
 %       eplison = 0.5;  % 数字越大，持续封锁措施时间越长

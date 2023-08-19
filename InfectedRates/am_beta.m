@@ -71,6 +71,7 @@ plot(0.1:steps:1.0,amplitudes(:,1));
 hold on;
 plot(0.1:steps:1.0,amplitudes(:,2));
 hold off;
+set(gcf,'position',[100,50,500,300]);
 saveas(gcf,"amplitude-beta0-details",'png');
 
 figure;
@@ -79,4 +80,5 @@ yline(0.5, 'r--', 'LineWidth', 2);
 xlabel('Infected rate beta0')
 ylabel('percentage of policy days')
 title('Days of policy-beta0')
+set(gcf,'position',[100,50,500,200]);
 saveas(gcf,'percentage-beta-details','png')

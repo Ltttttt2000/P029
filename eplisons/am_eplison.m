@@ -72,6 +72,7 @@ hold off;
 xlabel('eplison')
 ylabel('amplitude')
 title('amplitude-eplison')
+set(gcf,'position',[100,50,500,300]);
 saveas(gcf,"amplitude-eplison-details",'png');
 
 figure;
@@ -80,4 +81,5 @@ yline(0.5, 'r--', 'LineWidth', 2);
 xlabel('Infected rate eplison')
 ylabel('percentage of policy days')
 title('Days of policy-eplison')
+set(gcf,'position',[100,50,500,200]);
 saveas(gcf,'percentage-eplison-details','png')

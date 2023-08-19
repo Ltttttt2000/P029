@@ -50,14 +50,17 @@ figure;
 plot(Times_I, Ivalues_I,'*');
 xlabel('time delay (days)')
 ylabel('Infected group proportion (I) values')
+yline(0.56,'r', 'LineWidth',2)
+set(gcf,'position',[100,50,400,200]);
 title('Bifurcation diagram for time delay')
-saveas(gcf,'casade-I','png')
+% saveas(gcf,'casade-I','png')
 
-
+figure;
 plot(Times_S, Ivalues_S,'*');
 xlabel('time delay (days)')
 ylabel('Susceptible group proportion (S) values')
 title('Bifurcation diagram for time delay')
-saveas(gcf,'casade-S','png')
-
-saveas(gcf,'casede','png')
+% saveas(gcf,'casade-S','png')
+yline(0.38,'r', 'LineWidth',2)
+set(gcf,'position',[100,50,400,200]);
+% saveas(gcf,'casede','png')

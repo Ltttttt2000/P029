@@ -14,7 +14,8 @@ N = (tspan(2)-tspan(1))/h;  % one day
 % betas: the beta changes when threshold policy
 
 
-delay = [0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15];
+% delay = [0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15];
+delay = [0;5];
 % delay = [7;8];
 amplitudes = zeros(length(delay),2);
 for A = 1:length(delay)
@@ -92,4 +93,5 @@ hold off;
 xlabel("Days delay")
 ylabel('oscillation amplitude')
 legend('S','I')
+set(gcf,'position',[100,50,500,300]);
 saveas(gcf,"amplitude-timedelay",'png');

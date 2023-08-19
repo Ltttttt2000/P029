@@ -76,6 +76,7 @@ hold off;
 xlabel('threshold Ic')
 ylabel('amplitude')
 title('amplitude-threshold')
+set(gcf,'position',[100,50,500,300])
 saveas(gcf,"amplitude-threshold-details",'png');
 
 figure;
@@ -84,4 +85,5 @@ yline(0.5, 'r--', 'LineWidth', 2);
 xlabel('threshold Ic')
 ylabel('percentage of policy days')
 title('Days of policy-threshold')
+set(gcf,'position',[100,50,500,200])
 saveas(gcf,'percentage-details','png')

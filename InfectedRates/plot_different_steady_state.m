@@ -54,5 +54,5 @@ title("steady state of oscillation with difference beta")
 xlabel('initial beta');
 ylabel('steady state')
 legend('S', 'I');
-
+set(gcf,'position',[100,50,500,200]);
 saveas(gcf,"steady-beta0",'png');
