@@ -31,9 +31,9 @@ plot(t1, withoutpolicy(1,:),'r')
 hold on;
 plot(t1, withoutpolicy(2,:),'b')
 set(gcf,'position',[100,50,500,300])
-legend('S','I');
-xlabel('time')
-ylabel('population')
-title('The natural situation, without policy')
+legend('S','I','FontSize',15);
+xlabel('time','FontSize',15)
+ylabel('population','FontSize',15)
+title('The natural situation, without policy','FontSize',16)
 
 saveas(gcf,'steady','png')

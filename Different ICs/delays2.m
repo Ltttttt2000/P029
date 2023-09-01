@@ -111,11 +111,11 @@ for delay = 0:1:15
 end
 
 figure;
-name = "Ic1=" + num2str(Ics(1,1))+",Ic2="+ num2str(Ic2);
+name = "Ic1=" + num2str(Ic1)+",Ic2="+ num2str(Ic2);
 sgtitle(name);
 subplot(1,2,1)
 plot(Ic2s, Ivalues_I,'*');
-xlabel('Ic2 = S + I')
+xlabel('time delay')
 ylabel('Infected group proportion (I) values')
 title('Peaks and Nadirs of (I) values')
 yline(Ic1,'r','Linewidth',2,'Label','Ic1');
@@ -126,7 +126,7 @@ scatter(Ic2SI, SI_values)
 hold on;
 yline(Ic2,'r','Linewidth',2,'Label','Ic2');
 hold off;
-xlabel('Ic2 = S + I')
+xlabel('time delay')
 ylabel('S+I values')
 yline(0.943,'LineWidth',2,'Label','Steady State without policy')
 title('Peaks and Nadirs of (S+I) values')

@@ -20,7 +20,7 @@ beta_value = [];
 beta_x = [];
 
 Ic2 = 0.4;
-delay = 0;
+delay = 5;
 for Ic1 = 0.1:0.01:0.56
     [t1,Eulerp,withoutpolicy,betas] = twothreshold2(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,delay);
     [peaks_I, peakIdx_I] = findpeaks(Eulerp(2,:));
@@ -108,8 +108,8 @@ else
 end
 text(0.3,Ic2-0.02,'Ic2')
 text(0.3,0.256,'Ic1')
-xlabel('Ic1')
-ylabel('Infected group proportion (I) values')
+xlabel('Ic1',FontSize=15)
+ylabel('Infected group proportion (I) values',FontSize=15)
 yline(Ic2,'r','LineWidth',2);
-title(name)
-set(gcf,'position',[100,50,500,200]);
+title(name,FontSize=15)
+set(gcf,'position',[100,50,600,250]);

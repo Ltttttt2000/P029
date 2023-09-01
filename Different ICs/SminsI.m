@@ -31,7 +31,7 @@ eplisons = [eplison1; eplison2];
 i = 1;
 
 Ic1 = 0.37;
-delay = 0;
+delay = 5;
 for Ic2 = 0.1:0.01:0.25
     [t1,Eulerp,withoutpolicy,betas,days] = twothreshold3(tspan,p0,N, [Ic1,Ic2],beta0,eplisons,delay);
     [peaks_I, peakIdx_I] = findpeaks(Eulerp(2,:));

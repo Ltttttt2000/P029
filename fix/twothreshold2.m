@@ -1,7 +1,7 @@
 % This combine SIV ode function and Euler together 
 % change the beta 
 % Ic1和Ic2无大小关系
-function [t,r,withoutpolicy,betachange] = twothreshold4(tspan,yI,N, Ics,beta0,eplisons,delay)
+function [t,r,withoutpolicy,betachange] = twothreshold2(tspan,yI,N, Ics,beta0,eplisons,delay)
 
 % S:x(1) I:x(2) 
 

@@ -27,12 +27,14 @@ hold on;
 plot(t1, Eulerp(1,:))
 hold on;
 plot(t1, Eulerp(2,:))
-legend('S origin','I origin','S','I');
-xlabel('time')
-ylabel('population')
+legend('S origin','I origin','S','I','FontSize',15);
+xlabel('time',FontSize=15)
+ylabel('population',FontSize=15)
 set(gcf,'position',[100,50,500,300])
 
-title('The population of susceptible and intected people')
+
+
+title('The population of susceptible and intected people','FontSize',16)
 saveas(gcf,'oscillation','png')
 susceptible = Eulerp(1,80:100);
 infected = Eulerp(2,80:100);
